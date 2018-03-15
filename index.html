@@ -1,0 +1,45 @@
+<!Doctype HTML>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Private Library App</title>
+    <link rel="stylesheet" href="styles/main.css">
+  </head>
+  <body>
+    <header>
+      <h1>Private Library</h1>
+    </header>
+
+    <section>
+      <div class="shelf">
+
+      </div>
+
+      <button class="open-form">New Book</button>
+
+      <form class="hidden">
+        <legend>Add a new Book to your Library</legend>
+        <label>
+          Book Title
+          <input type="text" name="title">
+        </label>
+        <label>
+          Book Author
+          <input type="text" name="author">
+        </label>
+        <label>
+          Number of pages
+          <input type="number" name="pages">
+        </label>
+        <label>
+          Already read?
+          <input type="checkbox" name="read">
+        </label>
+
+        <button class="add-book">Add Book</button>
+        <button class="close-form">Close</button>
+      </form>
+    </section>
+    <script src="js/app.js"></script>
+  </body>
+</html>
