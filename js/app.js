@@ -1,9 +1,12 @@
-let myLibrary = [];
-let shelf = document.querySelector('.shelf');
-let openForm = document.querySelector('.open-form');
-let closeForm = document.querySelector('.close-form');
-let addBook = document.querySelector('.add-book');
-let form = document.querySelector('form');
+const myLibrary = [];
+const shelf     = document.querySelector('.shelf');
+const openForm  = document.querySelector('.open-form');
+const closeForm = document.querySelector('.close-form');
+const addBook   = document.querySelector('.add-book');
+const form      = document.querySelector('form');
+const titleF    = document.querySelector('#title');
+const authorF   = document.querySelector('#author');
+const pagesF    = document.querySelector('#pages');
 
 function Book(params) {
   this.title  = params['title'],
@@ -18,10 +21,32 @@ function Book(params) {
   this.toggleRead = function() {
     this.read = !this.read;
   };
-};
+}
 
 function addBookToLibrary(e) {
   e.preventDefault();
+
+  let formInvalid = () => {
+    return !(titleF.validity.valid && authorF.validity.valid && pagesF.validity.valid);
+  };
+
+  let gatherParams = () => {
+    let title  = document.querySelector('input[name="title"]').value;
+    let author = document.querySelector('input[name="author"]').value;
+    let pages  = document.querySelector('input[name="pages"]').value;
+    let read   = document.querySelector('input[name="read"]').checked;
+
+    let params = {
+      'title':  title,
+      'author': author,
+      'pages':  pages,
+      'read':   read
+    };
+
+    return params;
+  };
+
+  if (formInvalid()) { return false; }
 
   let book = new Book(gatherParams());
 
@@ -29,25 +54,15 @@ function addBookToLibrary(e) {
 
   toggleForm();
   render();
-};
-
-function gatherParams() {
-  let title  = document.querySelector('input[name="title"]').value;
-  let author = document.querySelector('input[name="author"]').value;
-  let pages  = document.querySelector('input[name="pages"]').value;
-  let read   = document.querySelector('input[name="read"]').checked;
-
-  let params = {
-    'title':  title,
-    'author': author,
-    'pages':  pages,
-    'read':   read
-  };
-
-  return params;
 }
 
 function render() {
+  let clearShelf = () => {
+    while(shelf.firstChild) {
+      shelf.removeChild(shelf.firstChild);
+    }
+  };
+
   clearShelf();
 
   for (let i = 0; i < myLibrary.length; i++) {
@@ -94,12 +109,6 @@ function prepareBook(i) {
   box.appendChild(destroy);
 
   return box;
-}
-
-function clearShelf() {
-  while(shelf.firstChild) {
-    shelf.removeChild(shelf.firstChild);
-  }
 }
 
 function toggleForm() {
@@ -149,3 +158,4 @@ render();
 openForm.addEventListener('click', toggleForm);
 closeForm.addEventListener('click', toggleForm);
 addBook.addEventListener('click', addBookToLibrary);
+

@@ -21,15 +21,15 @@
         <legend>Add a new Book to your Library</legend>
         <label>
           Book Title
-          <input type="text" name="title">
+          <input type="text" name="title" id="title" required minlength="3" maxlength="72">
         </label>
         <label>
           Book Author
-          <input type="text" name="author">
+          <input type="text" name="author" id="author" required minlength="3" maxlength="21">
         </label>
         <label>
           Number of pages
-          <input type="number" name="pages">
+          <input type="number" name="pages" id="pages" required min="1" max="9999">
         </label>
         <label>
           Already read?

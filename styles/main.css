@@ -159,6 +159,24 @@ input{
 	  margin: 20px 0;
 }
 
+input:valid{
+    border: 1px solid #d8d8d8;
+}
+
+input:invalid{
+    border: 1px solid #DC143C;
+    box-shadow: 0 0 3px #DC143C;
+}
+
+.error{
+    color: white;
+    background-color: #900;
+}
+
+.error.active{
+    color: red;
+}
+
 input[type=checkbox]{
 	  display: inline-block;
 	  height: 1.5rem;
