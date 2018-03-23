@@ -8,19 +8,25 @@ const titleF    = document.querySelector('#title');
 const authorF   = document.querySelector('#author');
 const pagesF    = document.querySelector('#pages');
 
-function Book(params) {
-  this.title  = params['title'],
-  this.author = params['author'],
-  this.pages  = params['pages'],
-  this.read   = params['read'],
+class Book {
+  constructor(params) {
+    this.title  = params['title'],
+    this.author = params['author'],
+    this.pages  = params['pages'],
+    this.read   = params['read']
+  }
 
-  this.isRead = function() {
+  isRead() {
     return this.read ? 'read' : 'not read';
-  },
+  }
 
-  this.toggleRead = function() {
+  toggleRead() {
     this.read = !this.read;
-  };
+  }
+
+  static new(params) {
+    return new this(params);
+  }
 }
 
 function addBookToLibrary(e) {
@@ -48,7 +54,7 @@ function addBookToLibrary(e) {
 
   if (formInvalid()) { return false; }
 
-  let book = new Book(gatherParams());
+  let book = Book.new(gatherParams());
 
   myLibrary.push(book);
 
